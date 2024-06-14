@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIFAR-10 Image Classification Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>CIFAR-10 Image Classification Result</h1>
+    <div id="result">
+        <h2>Prediction: <span id="predicted_class">{{ prediction }}</span></h2>
+        <h3>Confidence:</h3>
+        <table>
+            <tr>
+                <th>Class</th>
+                <th>Confidence Score (%)</th>
+            </tr>
+            {% for class_name, confidence in confidence_scores.items() %}
+            <tr>
+                <td>{{ class_name }}</td>
+                <td>{{ '%.2f' % (confidence * 100) }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/">Back to Upload</a>
+    </div>
+</body>
+</html>
